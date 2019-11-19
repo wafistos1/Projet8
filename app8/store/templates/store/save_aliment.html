@@ -5,9 +5,13 @@
                     <h1>Detail du Produit</h1> 
                     <br>
                     <br>
-                    <h2>  Les produits suivant ont ete enregistres dans le favorie de {{user}} </h2>
-                    {% for favorite in favorites%}
+                    <h2>  Les produit suivant a ete sauvegarder au favorie de {{user}} </h2>
+                    <br>
+                    <br>
+                    <br>
                     
+                    {{ favorite.product_favorite.name }}
+                                      
                         <ul class="myBlock col-xs-6 col-sm-4 col-md-4" style="list-style: none;" id='aligne'>
                                 <li class="element"><h3>{{ favorite.product_favorite.name }}</h3></li>
                                         <figure class="figure"> 
@@ -28,7 +32,6 @@
                                                 <h5>Grade: {{ favorite.product_choice.grade|upper }}</h5>            
                                 </li>
                         </ul>
-                        {% endfor %}
 
                 </div>      
 </section>

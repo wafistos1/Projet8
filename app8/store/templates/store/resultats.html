@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="page-section bg-dark text-orange">
+
+        <div class="card c" style="width: 8rem;">
+                <img class="card-img-top" src="{{data.images }}"  alt="Card image cap">
+                <div class="card-body">
+                          <p class="card-text">{{data.name}}</p>
+                          <p class="card-text">Grade: {{data.grade|upper}}</p>
+                </div>
+        </div>
+
+
+        <div class="container text-center">
+                <h1>Liste des produits avec meilleurs grades nutritionnels</h1>
+                <br>
+        </div>
+        <div class="row">
+                        {% for value in best_product %}
+
+                        <div class="col-xs-6 col-sm-4 col-md-4" >
+                                        
+                                <ul class="myBlock" style="list-style: none;" >
+                                         
+                                        <li class="element"><h3>{{ value.name }}</h3></li>
+                                         
+                                                        <img src="{{value.images }}" 
+                                                        class="mx-auto d-block" alt="Responsive image" 
+                                                        width="50" /> 
+                                        
+                                        <li id="aligne">
+                                                <h5>grade: {{ value.grade|upper }}</h5>            
+                                                <a href="{% url 'save_aliment' fav=value.pk prod=data.pk user=user.pk %}" >Sauvegarder</a>
+                                        </li>
+                                        
+                                </ul>
+                                
+                        </div>
+                        {% endfor %}
+                
+
+        </div>
+                {% include "pagination.html" with liste=best_product view="resultats" %}
+
+{% endblock %}
