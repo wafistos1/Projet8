@@ -1,22 +1,40 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
 
 <section class="page-section bg-dark text-orange">
 
-        <div class="card c" style="width: 8rem;">
+        <!-- <div class="card c" style="width: 8rem;">
                 <img class="card-img-top" src="{{data.images }}"  alt="Card image cap">
                 <div class="card-body">
                           <p class="card-text">{{data.name}}</p>
                           <p class="card-text">Grade: {{data.grade|upper}}</p>
                 </div>
-        </div>
+        </div> -->
+        <div class="container-fluid main-cont">
+                        <div class="row news-row">
+                            <div class="container-fluid col-md-12 col-sm-6 justify-content-center news-block">
+                                <div class="card-group">       
+                                  <div class="underlay">
+                                    <div class="card">
+                                        <div class="card-img-top" style="background-image: url({{data.images }})"></div>
+                                        <div class="card-block" >
+                                        <h5 class="card-title" style="font-family: 'Anton', sans-serif">{{ data.name }}  <hr></h5>
+                                        <p class="card-text" >Grade du produit: {{ data.grade|upper }}</u></a></p>
+                                        </div>
+                                    </div>
+                                  </div>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-
-        <div class="container text-center">
+        <!-- <div class="container text-center">
                 <h1>Liste des produits avec meilleurs grades nutritionnels</h1>
                 <br>
-        </div>
-        <div class="row">
+        </div> -->
+        <!-- <div class="row">
                         {% for value in best_product %}
 
                         <div class="col-xs-6 col-sm-4 col-md-4" >
@@ -40,7 +58,56 @@
                         {% endfor %}
                 
 
-        </div>
-                {% include "pagination.html" with liste=best_product view="resultats" %}
+        </div> -->
 
+        <div><img src='{% static "img/fond.jpg"%}' class="pixel-grid"/></div>
+        <div><i id="toggle-grid" class="fa fa-th"></i></div>
+        <!------------------------->
+        <!--======Push Menu======-->
+
+        <!------------------------->
+        <!--========Cards========-->
+        <div class="container-fluid main-cont">
+            <div class="row news-row">
+                <div class="container-fluid col-md-12 col-sm-6 justify-content-center news-block">
+                    <div class="card-group">
+                        {% for value in best_product%}        
+                      <div class="underlay">
+                        <div class="card">
+                            <div class="card-img-top" style="background-image: url({{value.images }})"></div>
+                            <div class="card-block" >
+                            <h5 class="card-title" style="font-family: 'Anton', sans-serif">{{ value.name }}  <hr></h5>
+                            <p class="card-text" >Grade du produit: {{ value.grade|upper }}</u><a href="{% url 'save_aliment' fav=value.pk prod=data.pk user=user.pk %}" > Sauvegarder</a></p>
+                            
+                            </div>
+                        </div>
+                      </div>
+                      {% endfor %}
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!------------------------>
+        <!--=======Scripts======-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script name="toggle-grid" type="text/javascript">
+        $(document).ready(function(){
+          $(document).on("keypress", function(event) {
+            // If 'alt + g' keys are pressed:
+            if (event.which === 169){
+                $('#toggle-grid').toggle();
+             }
+          });
+        
+          $('#toggle-grid').on("click"
+          , function() {
+              $('.pixel-grid').toggle();
+              $('#toggle-grid').toggleClass('orange');
+            });
+        });
+        </script>
+        <script src="{% static 'js/script.js' %}"></script>
+                {% include "pagination.html" with liste=best_product view="resultats" %}
+        </section>
 {% endblock %}

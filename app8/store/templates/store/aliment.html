@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
-<section class="page-section bg-dark text-orange">
+<!-- <section class="page-section bg-dark text-orange">
                 <div class="container text-center">
                     <h1>Detail du Produit</h1> 
                     <br>
@@ -31,5 +32,55 @@
                         {% endfor %}
 
                 </div>      
-</section>
+</section> -->
+
+        <!--======Pixel Grid======-->
+        <div><img src='{% static "img/fond.jpg"%}' class="pixel-grid"/></div>
+        <div><i id="toggle-grid" class="fa fa-th"></i></div>
+        <!------------------------->
+        <!--======Push Menu======-->
+
+        <!------------------------->
+        <!--========Cards========-->
+        <div class="container-fluid main-cont">
+            <div class="row news-row">
+                <div class="container-fluid col-md-12 col-sm-6 justify-content-center news-block">
+                    <div class="card-group">
+                        {% for favorite in favorites%}        
+                      <div class="underlay">
+                        <div class="card">
+                            <div class="card-img-top" style="background-image: url({{ favorite.product_favorite.images }})"></div>
+                            <div class="card-block" >
+                            <h5 class="card-title" style="font-family: 'Anton', sans-serif">{{ favorite.product_favorite.name }}  <hr></h5>
+                            <p class="card-text" >Grade du produit: {{ favorite.product_favorite.grade|upper }}</u></a></p>
+                            <p class="card-text"><small class="text-muted"></small></p>
+                            </div>
+                        </div>
+                      </div>
+                      {% endfor %}
+                      <
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!------------------------>
+        <!--=======Scripts======-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script name="toggle-grid" type="text/javascript">
+        $(document).ready(function(){
+          $(document).on("keypress", function(event) {
+            // If 'alt + g' keys are pressed:
+            if (event.which === 169){
+                $('#toggle-grid').toggle();
+             }
+          });
+        
+          $('#toggle-grid').on("click"
+          , function() {
+              $('.pixel-grid').toggle();
+              $('#toggle-grid').toggleClass('orange');
+            });
+        });
+        </script>
+        <script src="{% static 'js/script.js' %}"></script>
 {% endblock %}
