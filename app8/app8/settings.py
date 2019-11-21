@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #'django.middleware.locale.localeMiddleware', # changer le language de l'administration
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
@@ -114,14 +115,14 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr-fr' # langue du projet
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
+USE_I18N = True # Internationalisation du projet
 
-USE_L10N = True
-
+USE_L10N = True # Permet de formater automatiquement certaines données en fonction de la langue de l’utilisateur
+# lien cours https://openclassrooms.com/fr/courses/1871271-developpez-votre-site-web-avec-le-framework-django/1874201-linternationalisation
 USE_TZ = True
 
 

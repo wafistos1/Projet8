@@ -20,7 +20,7 @@ from store import views
 urlpatterns = [
     path('home', views.home, name='home'),
     path('resultats', views.resultats, name='resultats'),
-    url(r'^resultats(?P<page>\d+)$', views.resultats, name='resultats'),
+    path('resultats/<int:page>/', views.resultats, name='resultats'),
     path('aliment', views.aliment, name='aliment'),
     path('aliment/<int:fav>/<int:prod>/<int:user>/', views.save_aliment, name='save_aliment')
 ]
