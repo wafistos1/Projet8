@@ -35,14 +35,14 @@
 </section> -->
 
         <!--======Pixel Grid======-->
-        <div><img src='{% static "img/fond.jpg"%}' class="pixel-grid"/></div>
-        <div><i id="toggle-grid" class="fa fa-th"></i></div>
+        <!-- <div><img src='{% static "img/fond.jpg"%}' class="pixel-grid"/></div>
+        <div><i id="toggle-grid" class="fa fa-th"></i></div> -->
         <!------------------------->
         <!--======Push Menu======-->
 
         <!------------------------->
         <!--========Cards========-->
-        <div class="container-fluid main-cont">
+        <!-- <div class="container-fluid main-cont">
             <div class="row news-row">
                 <div class="container-fluid col-md-12 col-sm-6 justify-content-center news-block">
                     <div class="card-group">
@@ -58,14 +58,49 @@
                         </div>
                       </div>
                       {% endfor %}
-                      <
+                      
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
+
+        <main role="main">
+
+            <section class="jumbotron text-center">
+              <div class="container">
+                <h1 class="jumbotron-heading">Produits Favoris de {{user.username}}</h1>
+                
+              </div>
+            </section>
+          
+            <div class="album py-5 bg-light">
+              <div class="container">
+          
+                <div class="row">
+                    {% for favorite in favorites%}    
+                  <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                      <img class="bd-placeholder-img card-img-top"  width="80%" height="200" src="{{  favorite.product_favorite.images  }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/>
+                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">{{ favorite.product_favorite.name }}</text></svg>
+                      <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+
+                          <small class="text-muted">Grade: {{favorite.product_favorite.grade|upper}}</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          
+          </main>
+
         <!------------------------>
         <!--=======Scripts======-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script name="toggle-grid" type="text/javascript">
         $(document).ready(function(){
           $(document).on("keypress", function(event) {
@@ -81,6 +116,6 @@
               $('#toggle-grid').toggleClass('orange');
             });
         });
-        </script>
+        </script> -->
         <script src="{% static 'js/script.js' %}"></script>
 {% endblock %}
