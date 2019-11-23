@@ -75,3 +75,14 @@ def save_aliment(request, fav, prod, user):
         TODO : trouver eventuelleS erreurs pour les mettre dans les except
         """
     return render(request, 'store/save_aliment.html')
+
+
+@login_required(login_url = 'login')
+def detail_favori(request, pk):
+    try:
+        favorite = Favorite.objects.filter(pk=pk, user=request.user)
+        q1 = User.objects.filter(username__in=['wafistos1', "wafistos2"])
+        print(q1)
+    except:
+        print('Some errors has been')
+    return render(request, 'store/detail_favori.html', {'favorite': favorite[0]})

@@ -22,5 +22,6 @@ urlpatterns = [
     path('resultats', views.resultats, name='resultats'),
     path('resultats/<int:page>/', views.resultats, name='resultats'),
     path('aliment', views.aliment, name='aliment'),
-    path('aliment/<int:fav>/<int:prod>/<int:user>/', views.save_aliment, name='save_aliment')
+    path('aliment/<int:fav>/<int:prod>/<int:user>/', views.save_aliment, name='save_aliment'),
+    path('detail_favori/<int:pk>', views.detail_favori, name='detail_favori'),
 ]

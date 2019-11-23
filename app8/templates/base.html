@@ -44,8 +44,8 @@
             <a class="nav-link js-scroll-trigger" href="{% url 'compte' %}">Mon compte</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{% url 'aliment' %}">Mes aliments</a>
-          </li>
+            <a class="nav-link js-scroll-trigger" href="{% url 'aliment' %}">Aliment</a>
+          </li> 
           {% if user.is_authenticated %}
           <li class="nav-item">
               <p class="nav-link js-scroll-trigger">{{ user|capfirst }}</p>
@@ -115,3 +115,5 @@
 </body>
 
 </html>
+
+
