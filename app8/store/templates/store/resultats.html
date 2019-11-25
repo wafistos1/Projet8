@@ -31,9 +31,10 @@
                     </div> -->
                     <main role="main">
 
-                        <section class="jumbotron text-center">
+                        <section class="jumbotron text-center"  >
                           <div class="container">
-                            <h1 class="jumbotron-heading">Produit recherché</h1>
+                              <h1 class="text-uppercase text-white font-weight-bold">Produit recherché</h1>
+                            <div class="section_subtitle">Resultat de la recherche</div>
                             
                           </div>
                         </section>
@@ -46,11 +47,11 @@
                               <div class="col-md-4">
                                 <div class="card mb-4 shadow-sm">
                                   <img class="img-responsive"  width="80%" height="200" src="{{ data.images }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/>
-                                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">{{data.name }}</text>
+                                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">{{ data.name }}</text>
                                   <div class="card-body">
                                     <div class="d-flex justify-content-between align-items-center">
 
-                                      <small class="text-muted">Grade: {{data.grade|upper }}</small>
+                                      <div class="section_subtitle">Grade: {{ data.grade|upper }}</div>
                                     </div>
                                   </div>
                                 </div>
@@ -144,9 +145,13 @@
         </section>-->
         <main role="main">
 
-            <section class="jumbotron text-center">
+            <section class="jumbotron text-center"  >
               <div class="container">
-                <h1 class="jumbotron-heading">Produits de meilleur qualité nutritionnelle </h1>
+                  <div class="col text-center">
+                      <h1 class="text-uppercase text-white font-weight-bold">Produits de meilleur qualité nutritionnelle</h1>
+                      <div class="section_title"><h2>Vous pouvez remplacer cet aliment par</h2></div>
+                      <div class="section_subtitle">Produits de meilleur qualité nutritionnelle</div>
+                    </div>
                 
                   <a href="#" class="btn btn-primary my-2">Action1</a>
                   <a href="#" class="btn btn-secondary my-2">Secondary action</a>
@@ -155,14 +160,14 @@
               </div>
             </section>
           
-            <div class="album py-5 bg-light">
-              <div class="container">
+            <div class="album py-5 bg-light" >
+              <div class="container" >
           
                 <div class="row" >
                     {% for value in best_product%}   
-                  <div class="col-md-4">
+                  <div class="col-md-4" >
                     <div class="card mb-4 shadow-sm">
-                      <img class="bd-placeholder-img card-img-top"  width="100%" height="225" src="{{ value.images }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/>
+                      <img class="bd-placeholder-img card-img-top"  width="100%" height="225" src="{{ value.images }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="80%" height="100%" fill="#55595c"/>
                         <text x="50%" y="50%" fill="#eceeef" dy=".3em">{{value.name }}</text></svg>
                       <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">

@@ -2,12 +2,24 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+
+
+class Categorie(models.Model):
+    """
+    """
+    name = models.CharField(max_length=255, unique=True)
+
+    def __str__(self):
+        return self.name 
+
+
 class Product(models.Model):
     """ Class 
     """
-    name = models.CharField('Nom produit',max_length=255, unique=True)
+    name = models.CharField('Nom produit',max_length=500, unique=True)
     grade = models.CharField(max_length=40)
-    images = models.URLField(max_length=255)
+    images = models.URLField(max_length=500)
+    categorie = models.ForeignKey(Categorie, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -25,3 +37,5 @@ class Favorite(models.Model):
     
     def __str__(self):
         return f"produit: {self.product_choice.name} , product_substitute:{self.product_favorite.name}"
+
+

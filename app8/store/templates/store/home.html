@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
 <section class="page-section bg-primary" id="about">
     <div class="container">
       <div class="row justify-content-center">
@@ -31,14 +32,11 @@
               <h2 class="mb-4">Colette et Remy</h2>
               <h2 class="mb-4">Histoire</h2>
             </div>
-            <div>
-              <!-- {% for alim in contact %}
-              <div class="article">
-                <h3>{{ alim.name }}</h3>
-                <h3>{{ alim.email }}</h3>
-              </div>
-              {% endfor %} -->
-            </div>
+            <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 d-flex justify-content-between" id="images-centre"><img src="{% static 'img/colette-4.jpg' %}" width="30%" ><img src="{% static 'img/ratatouille-11.jpg' %}" width="50%"></div>
+            <div class="col-md-4"></div>
+          </div>
           </section>
     <section class="page-section" id="contact">
         <div class="container">

@@ -68,7 +68,7 @@
 
             <section class="jumbotron text-center">
               <div class="container">
-                <h1 class="jumbotron-heading">Produits Favoris de {{user.username}}</h1>
+                <div class="section_title">Produits Favoris de {{user.username}}</div>
               </div>
             </section>
           
@@ -83,7 +83,7 @@
                       <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
 
-                          <small class="text-muted">Grade: {{favorite.product_favorite.grade|upper}}</small>
+                          <div class="section_subtitle">Grade: {{favorite.product_favorite.grade|upper}}</div>
                         </div>
 
                       </div>
