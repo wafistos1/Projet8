@@ -32,7 +32,7 @@ class Command(BaseCommand):
             payload = {
             'search_terms': '',
             'json': 1,
-            'page_size': 100,
+            'page_size': 1000,
             'page': 1,
             'categories': index,
                 }
@@ -45,16 +45,15 @@ class Command(BaseCommand):
                 try:
                     name = json_data['products'][i]['product_name']
                     grade = json_data['products'][i]['nutrition_grades_tags'][0]
-                    image = json_data['products'][i]['image_nutrition_url']
-                    image1 = json_data['products'][i]['selected_images']['front']['thumb']
+                    image1 = json_data['products'][i]['image_front_url']
+                    
                     categorie = index
 
                     categorie_ins, created = Categorie.objects.get_or_create(name=categorie)
-                    print(categorie_ins.pk)
 
                     product = Product.objects.get_or_create(name=name, grade=grade, images=image1, categorie=categorie_ins)
-                except(KeyError, TypeError):
-                    continue
+                except(KeyError, TypeError) as error:
+                    print(error)
                 except IntegrityError:
                     continue
 

@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from store.models import Product, Favorite
+from store.models import Product, Favorite, Categorie
 from django.core.paginator import Paginator, EmptyPage
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -20,13 +20,11 @@ def resultats(request, page=1):
     """
     global query
     if request.GET.get('q') is not None:
-        query = request.GET.get('q')
-        
+        query = request.GET.get('q').capitalize()
     print(query)
     try:
-        data = Product.objects.filter(name=query)
-        data[0]
-        best_product = Product.objects.filter(grade__lt=data[0].grade).order_by("grade")
+        data = Product.objects.filter(name__contains=query)
+        best_product = Product.objects.filter(categorie=data[0].categorie).filter(grade__lt=data[0].grade).order_by("grade")
         paginator = Paginator(best_product, 15)
         best_product = paginator.page(page)
     except IndexError:
