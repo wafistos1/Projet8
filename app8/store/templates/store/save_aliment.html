@@ -10,28 +10,7 @@
                     <br>
                     <br>
                                       
-                        <!-- <ul class="myBlock col-xs-6 col-sm-4 col-md-4" style="list-style: none;" id='aligne'>
-                                <li class="element"><h3>{{ favorite.product_favorite.name }}</h3></li>
-                                        <figure class="figure"> 
-                                        <img src="{{ favorite.product_favorite.images }} " width="50px">
-                                        </figure> 
-                                <li id="aligne">
-                                        <h5>grade: {{ favorite.product_favorite.grade|upper }}</h5>            
-
-                                </li>
-
-                        </ul>
-                        <ul class="myBlock col-xs-6 col-sm-4 col-md-4" style="list-style: none;" id='aligne'>
-                                <li class="element"><h3>{{ favorite.product_choice.name }}</h3></li>
-                                        <figure class="figure"> 
-                                        <img src="{{ favorite.product_choice.images }} " width="50px">
-                                        </figure> 
-                                <li id="aligne">
-                                                <h5>Grade: {{ favorite.product_choice.grade|upper }}</h5>            
-                                </li>
-                        </ul>
-
-                </div>       -->
+                      
                 <main role="main">
 
                                 <section class="jumbotron text-center">
@@ -46,33 +25,36 @@
                                          
                                       <div class="col-md-4">
                                         <div class="card mb-4 shadow-sm">
-                                          <img class=""  width="80%" height="200" src="{{ favorite.product_choice.images  }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
-                                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">{{favorite.product_choice.name }}</text>
+                                          <img class="img-responsive"  width="80%" height="200" src="{{ favorite.product_choice.images  }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
+                                            <h3 x="50%" y="50%" fill="#eceeef" dy=".3em">{{favorite.product_choice.name }}</h3>
                                           <div class="card-body">
                                             <div class="d-flex justify-content-between align-items-center">
         
-                                              <div class="section_subtitle">Grade: {{favorite.product_choice.grade |upper }}</div>
+                                              <h5>Grade: {{favorite.product_choice.grade |upper }}</h5>
                                             </div>
                                           </div>
                                         </div>
                                       </div>
                                       <div class="container">
-                                                <div class="section_title">Produit favori </div>
+                                                <h2>Produit favori </h2>
                                                 
-                                              </div>
-                                      <div class="col-md-4">
-                                                <div class="card mb-4 shadow-sm">
-                                                  <img class="bd-placeholder-img card-img-top"  width="80%" height="200" src="{{ favorite.product_favorite.images }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/>
-                                                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">{{favorite.product_favorite.name }}</text></svg>
-                                                  <div class="card-body">
-                                                    <div class="d-flex justify-content-between align-items-center">
-                
-                                                      <div class="section_subtitle">Grade: {{favorite.product_favorite.grade|upper }}</div>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                              </div>
                                       </div>
+
+
+                                      <div class="col-md-4" >
+                                          <div class="card mb-4 shadow-sm">
+                                            <img class="img-responsive"  width="80%" height="225" src="{{ favorite.product_favorite.images  }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
+                                              <div class="card-body">
+                                                  <h5>{{favorite.product_favorite.name|truncatewords:3 }}</h5>
+                                              </div>
+                                            <div class="card-body">
+                                              <div class="d-flex justify-content-between align-items-center">
+
+                                                <h5>Grade: {{favorite.product_favorite.grade|upper }}</h5>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
                                       </section>
                                     </div>
                                   </div>

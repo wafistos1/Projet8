@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User
 from django import forms
+from register.models import Profile
+from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 
 class UserRegisterForm(UserCreationForm):
@@ -21,3 +23,11 @@ class UserRegisterForm(UserCreationForm):
         """
         model = User
         fields = ['username', 'email', 'password1', 'password2', 'first_name']
+
+
+class profileForm(ModelForm):
+    class Meta:
+        model = Profile
+        fiels = ('image', )
+        exclude = ['user']
+        

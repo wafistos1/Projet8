@@ -1,74 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<!-- <section class="page-section bg-dark text-orange">
-                <div class="container text-center">
-                    <h1>Detail du Produit</h1> 
-                    <br>
-                    <br>
-                    <h2>  Les produits suivant ont ete enregistres dans le favorie de {{user}} </h2>
-                    {% for favorite in favorites%}
-                    
-                        <ul class="myBlock col-xs-6 col-sm-4 col-md-4" style="list-style: none;" id='aligne'>
-                                <li class="element"><h3>{{ favorite.product_favorite.name }}</h3></li>
-                                        <figure class="figure"> 
-                                        <img src="{{ favorite.product_favorite.images }} " width="50px">
-                                        </figure> 
-                                <li id="aligne">
-                                        <h5>grade: {{ favorite.product_favorite.grade|upper }}</h5>            
 
-                                </li>
-
-                        </ul>
-                        <ul class="myBlock col-xs-6 col-sm-4 col-md-4" style="list-style: none;" id='aligne'>
-                                <li class="element"><h3>{{ favorite.product_choice.name }}</h3></li>
-                                        <figure class="figure"> 
-                                        <img src="{{ favorite.product_choice.images }} " width="50px">
-                                        </figure> 
-                                <li id="aligne">
-                                                <h5>Grade: {{ favorite.product_choice.grade|upper }}</h5>            
-                                </li>
-                        </ul>
-                        {% endfor %}
-
-                </div>      
-</section> -->
-
-        <!--======Pixel Grid======-->
-        <!-- <div><img src='{% static "img/fond.jpg"%}' class="pixel-grid"/></div>
-        <div><i id="toggle-grid" class="fa fa-th"></i></div> -->
-        <!------------------------->
-        <!--======Push Menu======-->
-
-        <!------------------------->
-        <!--========Cards========-->
-        <!-- <div class="container-fluid main-cont">
-            <div class="row news-row">
-                <div class="container-fluid col-md-12 col-sm-6 justify-content-center news-block">
-                    <div class="card-group">
-                        {% for favorite in favorites%}        
-                      <div class="underlay">
-                        <div class="card">
-                            <div class="card-img-top" style="background-image: url({{ favorite.product_favorite.images }})"></div>
-                            <div class="card-block" >
-                            <h5 class="card-title" style="font-family: 'Anton', sans-serif">{{ favorite.product_favorite.name }}  <hr></h5>
-                            <p class="card-text" >Grade du produit: {{ favorite.product_favorite.grade|upper }}</u></a></p>
-                            <p class="card-text"><small class="text-muted"></small></p>
-                            </div>
-                        </div>
-                      </div>
-                      {% endfor %}
-                      
-                    </div>
-                </div>
-            </div>
-        </div> -->
 
         <main role="main">
 
             <section class="jumbotron text-center">
               <div class="container">
-                <div class="section_title">Produits Favoris de {{user.username}}</div>
+                <h2>Produits Favoris de {{user.username}}</h2>
               </div>
             </section>
           
@@ -76,22 +15,27 @@
               <div class="container">
                 <div class="row">
                     {% for favorite in favorites%}  
-                  <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                      <img class=""  width="80%" height="200" src="{{  favorite.product_favorite.images  }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/>
-                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">{{ favorite.product_favorite.name }}</text>
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
 
-                          <div class="section_subtitle">Grade: {{favorite.product_favorite.grade|upper}}</div>
+
+
+
+                  <div class="col-md-4" >
+                      <div class="card mb-4 shadow-sm">
+                        <img class="img-responsive"  width="80%" height="225" src="{{ favorite.product_favorite.images  }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
+                          <div class="card-body">
+                              <h5>{{favorite.product_favorite.name|truncatewords:3 }}</h5>
+                          </div>
+                        <div class="card-body">
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                              <a href="{% url 'detail_favori' pk=favorite.pk %}" ><button type="button" class="btn btn-sm btn-outline-primary">Details</button></a>
+                            </div>
+                            <h3>Grade: {{favorite.product_favorite.grade|upper }}</h3>
+                          </div>
                         </div>
-
-                      </div>
-                      <div class="btn-group">
-                        <a href="{% url 'detail_favori' pk=favorite.pk %}" ><button type="button" class="btn btn-sm btn-outline-secondary">Detail</button></a>
                       </div>
                     </div>
-                  </div>
+
                   {% endfor %}
                 </div>
               </div>
@@ -99,25 +43,6 @@
           
           </main>
 
-        <!------------------------>
-        <!--=======Scripts======-->
-
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script name="toggle-grid" type="text/javascript">
-        $(document).ready(function(){
-          $(document).on("keypress", function(event) {
-            // If 'alt + g' keys are pressed:
-            if (event.which === 169){
-                $('#toggle-grid').toggle();
-             }
-          });
-        
-          $('#toggle-grid').on("click"
-          , function() {
-              $('.pixel-grid').toggle();
-              $('#toggle-grid').toggleClass('orange');
-            });
-        });
-        </script> -->
+    
         <script src="{% static 'js/script.js' %}"></script>
 {% endblock %}

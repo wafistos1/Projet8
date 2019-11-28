@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from store.models import Product, Favorite, Categorie
 from django.core.paginator import Paginator, EmptyPage
 from django.contrib.auth.decorators import login_required
@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 # Global variable
-query = None
+
 
 
 def home(request):
@@ -18,10 +18,9 @@ def home(request):
 def resultats(request, page=1):
     """Displays the results of the search for substitute products 
     """
-    global query
+    query = 'Coca'
     if request.GET.get('q') is not None:
         query = request.GET.get('q').capitalize()
-    print(query)
     try:
         data = Product.objects.filter(name__contains=query)
         best_product = Product.objects.filter(categorie=data[0].categorie).filter(grade__lt=data[0].grade).order_by("grade")
@@ -84,3 +83,17 @@ def detail_favori(request, pk):
     except:
         print('Some errors has been')
     return render(request, 'store/detail_favori.html', {'favorite': favorite[0]})
+
+
+@login_required(login_url = 'login')
+def aliment_delete(request, pk):
+    try:
+        favorite = Favorite.objects.filter(pk=pk, user=request.user)
+        if favorite.exists():
+            if request.user == favorite[0].user:
+                favorite[0].delete()
+            else:
+                print('pas le meme user')
+    except:
+        print('Produit non supprimer')
+    return render(request, 'store/aliment_delete.html')

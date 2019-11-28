@@ -1,12 +1,11 @@
 {% extends "base.html" %}
-{% block content %}
+{% load crispy_forms_tags %}
 {% load static %}
-
-
-
+{% block content %}
 
 <div class="container">
         <div class="row">
+                
             <div class="col-12">
                 <div class="card">
 
@@ -14,7 +13,7 @@
                         <div class="card-title mb-4">
                             <div class="d-flex justify-content-start">
                                 <div class="image-container">
-                                    <img src="{% static 'img/papy.jpeg' %}" id="imgProfile" style="width: 150px; height: 150px" class="img-thumbnail" />
+                                    <img src="..{{ user.profile.image.url }}" id="imgProfile" style="width: 150px; height: 150px" class="img-thumbnail" />
                                     <div class="middle">
                                         <input type="button" class="btn btn-secondary" id="btnChangePicture" value="Change" />
                                         <input type="file" style="display: none;" id="profilePicture" name="file" />
@@ -73,6 +72,4 @@
             </div>
         </div>
     </div>
-<!--
-
-{% endblock %}
+    {% endblock %}
