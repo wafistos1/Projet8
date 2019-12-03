@@ -17,11 +17,12 @@ def Register(request):
             profile = profile_form.save(commit=False)
             profile.user = user
             profile.save()
-            return redirect('aliment')
+            return redirect('compte')
     else:
         user_form = UserRegisterForm()
         profile_form = profileForm()
     return render(request, 'register/user.html', {'user_form': user_form, 'profile_form': profile_form})
+
 
 @login_required(login_url = 'login')
 def compte(request):

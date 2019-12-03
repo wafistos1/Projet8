@@ -20,6 +20,7 @@ class Product(models.Model):
     grade = models.CharField(max_length=40)
     images = models.URLField(max_length=500)
     categorie = models.ForeignKey(Categorie, on_delete=models.CASCADE)
+    # todo : Add field for url product (link OpenFoodFacts)
 
     def __str__(self):
         return self.name

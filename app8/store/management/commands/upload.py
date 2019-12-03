@@ -46,6 +46,7 @@ class Command(BaseCommand):
                     name = json_data['products'][i]['product_name']
                     grade = json_data['products'][i]['nutrition_grades_tags'][0]
                     image1 = json_data['products'][i]['image_front_url']
+                    # todo : add url link to OpenfoodFacts 
                     
                     categorie = index
 
@@ -53,7 +54,7 @@ class Command(BaseCommand):
 
                     product = Product.objects.get_or_create(name=name, grade=grade, images=image1, categorie=categorie_ins)
                 except(KeyError, TypeError) as error:
-                    print(error)
+                    continue
                 except IntegrityError:
                     continue
 

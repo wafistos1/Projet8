@@ -26,3 +26,15 @@ class TestModels(TestCase):
 
     def test_favorite_objects_product_categorie(self):
         self.assertEquals(self.favorite.product_choice.categorie.name, 'soda')
+
+    def test_favorite_objects_product_favorite_image_path(self):
+        self.assertEquals(self.favorite.product_favorite.images, 'static/img/23.jpg')
+    
+    def test_favorite_objects_product_choice_image_path(self):
+        self.assertEquals(self.favorite.product_choice.images, 'static/img/123.jpg')
+    
+    def test_favorite_objects_product_favorite_grade(self):
+        self.assertEquals(self.favorite.product_favorite.grade, 'A')
+    
+    def test_favorite_objects_product_choice_grade(self):
+        self.assertEquals(self.favorite.product_choice.grade, 'C')

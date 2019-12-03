@@ -19,7 +19,7 @@ class TestUrls(SimpleTestCase):
         self.assertEquals(resolve(url).func, aliment)
 
     def test_save_aliment_url_resolves(self):
-        url = reverse('save_aliment', args=[2, 3, 4])
+        url = reverse('save_aliment', args=[2, 3])
         self.assertEquals(resolve(url).func, save_aliment)
     
     def test_detail_favori_url_resolves(self):

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'bootstrap_modal_forms',
+    'django_nose',
     'store',
     'register',
     'crispy_forms',
@@ -141,3 +142,4 @@ INTERNAL_IPS = ['127.0.0.1']
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
+
