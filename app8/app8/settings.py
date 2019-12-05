@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,11 +22,21 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'ol&r6n+p7x2veeouze8+9v+muuv#a$(31t_0%c#6#f5zdwz)+='
+"""
+>>> import random, string
+>>> "".join([random.choice(string.printable) for _ in range(24)])
+
+"""
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if os.environ.get('ENV') == 'PRODUCTION':
+    DEBUG = False
+else:
+    DEBUG = True
+    
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['openfood.herokuapp.com']
 
 
 # Application definition
@@ -55,6 +66,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     #'django.middleware.locale.localeMiddleware', # changer le language de l'administration
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'whitenoise.middleware.whiteNoiseMiddelware',
 ]
 
 ROOT_URLCONF = 'app8.urls'
@@ -117,7 +129,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'fr-fr' # langue du projet
+LANGUAGE_CODE = 'fr' # langue du projet
 
 TIME_ZONE = 'UTC'
 
@@ -143,3 +155,15 @@ INTERNAL_IPS = ['127.0.0.1']
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
+
+if os.environ.get('ENV') == 'PRODUCTION':
+    
+    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+    STATICFILES_DIRS = (
+        os.path.join(PROJECT_ROOT, 'static'),
+    )
+    
+    STATICFILES_STORAGE = 'whirenoise.storage.CompressedManifestStaticFilesStorage'
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES['default'].update(db_from_env)

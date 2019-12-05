@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 
 # Global variable
-querys = None
+query = None
 
 def home(request):
     return render(request, 'store/home.html')
@@ -16,11 +16,11 @@ def home(request):
 def resultats(request, page=1):
     """Displays the results of the search for substitute products 
     """
-    global querys 
-    if request.GET.get('q') is not None:
-        querys = request.GET.get('q').capitalize()
+    global query 
+    if request.GET.get('q') is not None :
+        query = request.GET.get('q').capitalize()
     try:
-        data = Product.objects.filter(name__contains=querys)
+        data = Product.objects.filter(name__contains=query)
         best_product = Product.objects.filter(categorie=data[0].categorie).filter(grade__lt=data[0].grade).order_by("grade")
         paginator = Paginator(best_product, 15)
         best_product = paginator.page(page)

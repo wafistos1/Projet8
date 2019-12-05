@@ -25,18 +25,22 @@ class MySeleniumTests(LiveServerTestCase):
         self.selenium.find_element_by_id("id_username").send_keys('wafistos4')
         self.selenium.find_element_by_id("id_password").send_keys('djamel2013')
         self.selenium.find_element_by_id('submitBtn').click()
-        time.sleep(100)
         self.assertEquals(self.selenium.title, 'Pure Beurre')
         
 
-    # def test_search(self):
-    #     self.selenium.get('%s%s' % (self.live_server_url, '/store'))
-    #     query = self.selenium.find_element_by_name("q")
-    #     query.send_keys('Pepsi')
-    #     add_url = self.live_server_url + reverse('login')
-    #     self.selenium.find_element_by_id('submitId').click()
+    def test_search(self):
+        self.selenium.get('%s%s' % (self.live_server_url, '/store'))
+        query = self.selenium.find_element_by_name("q")
+        query.send_keys('Pepsi')
+        add_url = self.live_server_url + reverse('login')
+        self.selenium.find_element_by_id('submitId').click()
+        self.selenium.find_element_by_id("id_username").send_keys('wafistos4')
+        self.selenium.find_element_by_id("id_password").send_keys('djamel2013')
+        self.selenium.find_element_by_id('submitBtn').click()
         
-    #     self.assertEquals(self.live_server_url, add_url)
+        time.sleep(100)
+        
+        self.assertEquals(self.live_server_url, add_url)
 
 
         

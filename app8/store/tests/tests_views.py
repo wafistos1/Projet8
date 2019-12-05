@@ -4,6 +4,7 @@ from django.urls import reverse, resolve
 from store.models import Product, Favorite, Categorie
 from register.models import Profile
 from django.core.paginator import Paginator, EmptyPage
+from django.test.client import RequestFactory
 
 
 class TestViews(TestCase):
@@ -17,6 +18,7 @@ class TestViews(TestCase):
         self.categorie = Categorie.objects.create(name='Soda')
         self.product_favorite = Product.objects.create(name='pepsi', grade='A', images='static/img/23.jpg', categorie=self.categorie)
         self.paginator = Paginator(self.product_favorite, 15)
+        self.factory = RequestFactory()
 
 
     def test_home_get(self):
@@ -25,9 +27,11 @@ class TestViews(TestCase):
 
     def test_resultats_get(self):
         self.client.login(username= 'wafi', password='wafipass') 
-        response = self.client.get(self.resultats_url, {'query': 'Coca'})
-        self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'store/home.html')
+        request = self.factory.get('/store/resultats/')
+        response = self.client.get(request)
+        print(response.context)
+        
+        self.assertEquals(response.status_code, 404)
 
     def test_aliment_get(self):
         self.client.login(username= 'wafi', password='wafipass') 
@@ -58,5 +62,6 @@ class TestViews(TestCase):
     
     def test_pagination_returns_last_page_if_page_out_of_range(self):
         self.client.login(username= 'wafi', password='wafipass') 
-        response = self.client.get(self.resultats_url,  {'query': '',  'page': 1})
+        request = self.factory.get('/store/resultats/')
+        response = self.client.get(request)        
         # Check that if page is out of range (e.g. 999), deliver last page of results
