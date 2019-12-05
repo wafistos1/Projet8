@@ -18,7 +18,7 @@ from django.conf.urls import url, include
 from store import views
 
 urlpatterns = [
-    path('home', views.home, name='home'),
+    path('', views.home, name='home'),
     path('resultats', views.resultats, name='resultats'),
     path('resultats/<int:page>/', views.resultats, name='resultats'),
     path('aliment', views.aliment, name='aliment'),

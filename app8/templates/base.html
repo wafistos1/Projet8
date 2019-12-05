@@ -36,7 +36,7 @@
             <form method="GET" action="{% url 'resultats' %}">
                 {% csrf_token %}
               <input type="text"  name="q" Recherche placeholder="Rechercher un produit">
-              <input class="btn btn-primary my-2" type="submit" value="Search">
+              <input class="btn btn-primary my-2" id="submitId" type="submit" value="Search">
               
             </form>
           </li>
